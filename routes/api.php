@@ -19,18 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->name('api.v1.')->group(function() {
-    Route::get('sms', function() {
-        $sms = app('easysms');
-        try {
-            $sms->send(18716230652, [
-                'template' => 'SMS_190275723',
-                'data' => [
-                    'code' => 548456
-                ],
-            ]);
-        } catch (\Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception) {
-            $message = $exception->getException('aliyun')->getMessage();
-            return $message;
-        }
-    })->name('sms');
+
 });
